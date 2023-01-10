@@ -9,29 +9,7 @@ import '@fontsource/roboto/700.css';
 import './index.css';
 import { CssBaseline } from '@mui/material';
 
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: '#6de8c0',
-		},
-		secondary: {
-			main: '#47beff',
-			light: '#a7e6ff',
-		},
-		background: {
-			paper: '#fff',
-		},
-		text: {
-			primary: '#222222',
-		},
-	},
-	typography: {
-		body2: {
-			fontSize: '0.75rem',
-			lineHeight: '1.5',
-		},
-	},
-});
+const theme = createTheme({});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
