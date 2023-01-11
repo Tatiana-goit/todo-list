@@ -1,7 +1,7 @@
 const todoLists = [
   {
     id: 0,
-    name: 'Tasks for the today',
+    name: 'Tasks for today',
     todos: [
       {
         id: 0,
