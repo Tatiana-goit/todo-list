@@ -1,8 +1,12 @@
-export default function MainPage()
-{
+import Header from "../../components/Header/Header"
+import CardView from "../../components/CardView/CardView"
+import todoLists from "../../data/todoLists"
+
+export default function MainPage() {
   return (
     <>
-    <p>Main page</p>
+    <Header/>
+    <CardView todoLists={todoLists}/>
     </>
   )  
 };
