@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import { Container, Pagination } from '@mui/material';
 
 export default function PaginationTodoLists() {
