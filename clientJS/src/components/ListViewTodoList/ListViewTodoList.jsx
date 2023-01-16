@@ -10,8 +10,8 @@ export default function ListViewTodoList({ id, name }) {
 			sx={{
 				height: '80px',
 				width: '800px',
-				marginBottom: 3,
-				padding: 1,
+				mb: 3,
+				p: 1,
 				bgcolor: 'background.secondary',
 			}}
 		>
@@ -34,7 +34,7 @@ export default function ListViewTodoList({ id, name }) {
 						</Typography>
 					}
 				/>
-				<DeleteIcon sx={{ marginRight: 1 }} />
+				<DeleteIcon sx={{ mr: 1 }} />
 			</Box>
 		</Card>
 	);

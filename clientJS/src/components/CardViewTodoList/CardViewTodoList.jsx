@@ -28,13 +28,13 @@ export default function CardForCardView({ id, name, todos }) {
 					<CardHeader
 						title={
 							<Typography
-								sx={{ color: 'text.primary', fontSize: 22, padding: '14px' }}
+								sx={{ color: 'text.primary', fontSize: 22, p: '14px' }}
 							>
 								{name}
 							</Typography>
 						}
 					/>
-					<DeleteIcon sx={{ marginRight: 3 }} />
+					<DeleteIcon sx={{ mr: 3 }} />
 				</Box>
 
 				<CardContent sx={{ height: '186px', overflowY: 'scroll' }}>
@@ -50,8 +50,8 @@ export default function CardForCardView({ id, name, todos }) {
 									sx={{
 										display: 'flex',
 										justifyContent: 'space-between',
-										paddingRight: 0,
-										paddingTop: 0,
+										pr: 0,
+										pt: 0,
 									}}
 								>
 									<Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -65,7 +65,7 @@ export default function CardForCardView({ id, name, todos }) {
 											justifyContent: 'flex-end',
 											fontSize: 14,
 											width: 60,
-											marginLeft: 2,
+											ml: 2,
 										}}
 									>
 										{date}

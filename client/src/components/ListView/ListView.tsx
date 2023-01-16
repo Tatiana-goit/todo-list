@@ -14,7 +14,7 @@ export default function ListView({ todoLists }: Props) {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				paddingTop: 5,
+				pt: 5,
 			}}
 		>
 			{todoLists.map(({ id, name }) => (

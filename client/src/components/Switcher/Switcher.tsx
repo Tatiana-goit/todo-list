@@ -4,13 +4,13 @@ import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 interface Props {
-	viewVersion: string;
-	handleChange(event: React.MouseEvent<HTMLElement>, viewVersion: string): void;
+	view: string;
+	handleChange(event: React.MouseEvent<HTMLElement>, view: string): void;
 }
 
-export default function Switcher({ viewVersion, handleChange }: Props) {
+export default function Switcher({ view, handleChange }: Props) {
 	return (
-		<ToggleButtonGroup value={viewVersion} onChange={handleChange} exclusive>
+		<ToggleButtonGroup value={view} onChange={handleChange} exclusive>
 			<ToggleButton value="card" aria-label="card">
 				<ViewModuleIcon fontSize="medium" />
 			</ToggleButton>

@@ -7,14 +7,12 @@ export default function Header() {
 			sx={{
 				display: 'flex',
 				alignItems: 'center',
-				padding: 5,
+				p: 5,
 				height: 120,
 				backgroundColor: 'background.primary',
 			}}
 		>
-			<AddTaskIcon
-				sx={{ color: 'text.secondary', fontSize: 60, marginRight: 3 }}
-			/>
+			<AddTaskIcon sx={{ color: 'text.secondary', fontSize: 60, mr: 3 }} />
 			<Typography
 				variant="h6"
 				component="h1"

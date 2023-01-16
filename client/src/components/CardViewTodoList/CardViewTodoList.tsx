@@ -39,15 +39,15 @@ export default function CardForCardView({ id, name, todos }: Props) {
 								sx={{
 									color: 'text.primary',
 									fontSize: 22,
-									paddingTop: 1,
-									paddingBottom: 1,
+									pt: 1,
+									pb: 1,
 								}}
 							>
 								{name}
 							</Typography>
 						}
 					/>
-					<DeleteIcon sx={{ marginRight: 3 }} />
+					<DeleteIcon sx={{ mr: 3 }} />
 				</Container>
 
 				<CardContent sx={{ height: '186px', overflowY: 'scroll' }}>
@@ -63,8 +63,8 @@ export default function CardForCardView({ id, name, todos }: Props) {
 									sx={{
 										display: 'flex',
 										justifyContent: 'space-between',
-										paddingRight: 0,
-										paddingTop: 0,
+										pr: 0,
+										pt: 0,
 									}}
 								>
 									<Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -78,7 +78,7 @@ export default function CardForCardView({ id, name, todos }: Props) {
 											justifyContent: 'flex-end',
 											fontSize: 14,
 											width: 60,
-											marginLeft: 2,
+											ml: 2,
 										}}
 									>
 										{date}

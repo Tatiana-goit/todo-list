@@ -21,8 +21,8 @@ export default function MainPage() {
 				sx={{
 					display: 'flex',
 					justifyContent: 'space-between',
-					padding: 5,
-					paddingBottom: 0,
+					p: 5,
+					pb: 0,
 				}}
 			>
 				<TodoListButton />

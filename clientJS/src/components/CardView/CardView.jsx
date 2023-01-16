@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function CardView({ todoLists }) {
 	return (
-		<Grid container spacing={3} rowSpacing={5} padding={5}>
+		<Grid container spacing={3} rowSpacing={5} p={5}>
 			{todoLists.map(({ id, name, todos }) => (
 				<CardViewTodoList key={id} id={id} name={name} todos={todos} />
 			))}

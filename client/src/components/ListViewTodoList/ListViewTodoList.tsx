@@ -15,8 +15,8 @@ export default function ListViewTodoList({ id, name }: Props) {
 			sx={{
 				height: '80px',
 				width: '800px',
-				marginBottom: 3,
-				padding: 1,
+				mb: 3,
+				p: 1,
 				bgcolor: 'secondary.main',
 			}}
 		>
@@ -39,7 +39,7 @@ export default function ListViewTodoList({ id, name }: Props) {
 						</Typography>
 					}
 				/>
-				<DeleteIcon sx={{ marginRight: 1 }} />
+				<DeleteIcon sx={{ mr: 1 }} />
 			</Container>
 		</Card>
 	);
