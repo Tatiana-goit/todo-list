@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import ListViewTodoList from '../ListViewTodoList/ListViewTodoList';
+import ListViewList from '../ListViewList/ListViewList';
 import { TodoLists } from '../../shared/interfaces/todolist.interfaces';
 
 interface Props {
@@ -18,7 +18,7 @@ export default function ListView({ todoLists }: Props) {
 			}}
 		>
 			{todoLists.map(({ id, name }) => (
-				<ListViewTodoList key={id} id={id} name={name} />
+				<ListViewList key={id} id={id} name={name} />
 			))}
 		</Container>
 	);

@@ -21,7 +21,7 @@ interface Props {
 	todos: Todo[];
 }
 
-export default function CardForCardView({ id, name, todos }: Props) {
+export default function CardViewList({ id, name, todos }: Props) {
 	return (
 		<Grid item key={id} xs={12} sm={6} md={4}>
 			<Card sx={{ height: '278px' }}>

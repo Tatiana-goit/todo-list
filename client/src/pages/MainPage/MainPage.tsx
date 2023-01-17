@@ -3,11 +3,11 @@ import { useState, useCallback } from 'react';
 import Header from '../../components/Header/Header';
 import CardView from '../../components/CardView/CardView';
 import ListView from '../../components/ListView/ListView';
-import TodoListButton from '../../components/TodoListButton/TodoListButton';
+import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import CountLists from '../../components/CountLists/CountLists';
 import Switcher from '../../components/Switcher/Switcher';
 import { Box } from '@mui/material';
-import PaginationTodolists from '../../components/PaginationTodoLists/PaginationTodoLists';
+import PaginationList from '../../components/Pagination/Pagination';
 import { TodoLists } from '../../shared/interfaces/todolist.interfaces';
 
 export default function MainPage() {
@@ -38,7 +38,7 @@ export default function MainPage() {
 					pb: 0,
 				}}
 			>
-				<TodoListButton />
+				<ButtonCreate />
 				<Box
 					sx={{
 						display: 'flex',
@@ -56,7 +56,7 @@ export default function MainPage() {
 			</Box>
 			{view === 'card' && <CardView todoLists={todoLists} />}
 			{view === 'list' && <ListView todoLists={todoLists} />}
-			<PaginationTodolists pageSize={listsOnPage} setTodos={handleSetTodos} />
+			<PaginationList pageSize={listsOnPage} setTodos={handleSetTodos} />
 		</>
 	);
 }

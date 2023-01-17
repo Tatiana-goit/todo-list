@@ -8,7 +8,7 @@ interface Props {
 	name: string;
 }
 
-export default function ListViewTodoList({ id, name }: Props) {
+export default function ListViewList({ id, name }: Props) {
 	return (
 		<Card
 			key={id}

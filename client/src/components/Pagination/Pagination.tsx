@@ -8,7 +8,7 @@ interface Props {
 	pageSize: number;
 	setTodos(data: TodoLists[]): void;
 }
-export default function PaginationTodoLists({ pageSize, setTodos }: Props) {
+export default function PaginationList({ pageSize, setTodos }: Props) {
 	const [count, setCount] = useState(0);
 	const [from, setFrom] = useState(0);
 	const [to, setTo] = useState(0);
