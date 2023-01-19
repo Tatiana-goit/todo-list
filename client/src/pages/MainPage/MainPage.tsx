@@ -7,7 +7,7 @@ import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import CountLists from '../../components/CountLists/CountLists';
 import Switcher from '../../components/Switcher/Switcher';
 import { Box } from '@mui/material';
-import PaginationList from '../../components/Pagination/Pagination';
+import Pagination from '../../components/Pagination/Pagination';
 import { TodoLists } from '../../shared/interfaces/todolist.interfaces';
 
 export default function MainPage() {
@@ -56,7 +56,7 @@ export default function MainPage() {
 			</Box>
 			{view === 'card' && <CardView todoLists={todoLists} />}
 			{view === 'list' && <ListView todoLists={todoLists} />}
-			<PaginationList pageSize={listsOnPage} setTodos={handleSetTodos} />
+			<Pagination pageSize={listsOnPage} setTodos={handleSetTodos} />
 		</>
 	);
 }
