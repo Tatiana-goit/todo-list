@@ -26,6 +26,8 @@ export default function MainPage() {
 		[setTodoLists]
 	);
 
+	console.log('todoLists', todoLists);
+
 	return (
 		<>
 			<Header />
@@ -54,9 +56,9 @@ export default function MainPage() {
 					<Switcher view={view} handleChange={handleChange} />
 				</Box>
 			</Box>
-			{view === 'card' && <CardView todoLists={todoLists} />}
 			{view === 'list' && <ListView todoLists={todoLists} />}
-			<Pagination pageSize={listsOnPage} setTodos={handleSetTodos} />
+			{view === 'card' && <CardView todoLists={todoLists} />}
+			<Pagination limit={listsOnPage} setTodos={handleSetTodos} />
 		</>
 	);
 }

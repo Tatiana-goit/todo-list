@@ -52,14 +52,14 @@ export default function CardViewList({ id, name, todos }: Props) {
 
 				<CardContent sx={{ height: '186px', overflowY: 'scroll' }}>
 					<List>
-						{todos.map(({ id, text, isDone, createdDate }) => {
+						{todos.map(({ _id, text, isDone, createdDate }) => {
 							const date = DateTime.fromFormat(
 								createdDate,
 								'dd MMM yyyy, T'
 							).toFormat('dd MMM');
 							return (
 								<ListItem
-									key={id}
+									key={_id}
 									sx={{
 										display: 'flex',
 										justifyContent: 'space-between',

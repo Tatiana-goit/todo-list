@@ -17,8 +17,8 @@ export default function ListView({ todoLists }: Props) {
 				pt: 5,
 			}}
 		>
-			{todoLists.map(({ id, name }) => (
-				<ListViewList key={id} id={id} name={name} />
+			{todoLists.map(({ _id, name }) => (
+				<ListViewList key={_id} id={_id} name={name} />
 			))}
 		</Container>
 	);

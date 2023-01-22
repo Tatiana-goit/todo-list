@@ -1,5 +1,5 @@
 import { TodoLists } from '../shared/interfaces/todolist.interfaces';
-import todoLists from '../data/todoLists';
+// import { todoLists } from '../data/todos';
 
 interface Args {
 	from: number;
@@ -13,18 +13,32 @@ interface Response {
 
 interface Service {
 	getData: ({ from, to }: Args) => Promise<Response>;
+	getTodoListById: (id: number) => Promise<{ data: TodoLists }>;
 }
 
-const service: Service = {
-	getData: ({ from, to }: Args) => {
-		return new Promise((resolve) => {
-			const data = todoLists.slice(from, to);
-			resolve({
-				count: todoLists.length,
-				data: data,
-			});
-		});
-	},
-};
+// interface Args {
+// 	from: number;
+// 	to: number;
+// }
 
-export default service;
+// interface Response {
+// 	count: number;
+// 	data: TodoLists[];
+// }
+
+// interface Service {
+// 	getData: ({ from, to }: Args) => Promise<Response>;
+// }
+
+// const service: Service = {
+//    getData: ({ from, to }: Args) => {
+//      return new Promise((resolve) => {
+//        const data = todoLists.slice(from, to);
+//        resolve({
+//          count: todoLists.length,
+//          data: data,
+//        });
+//      });
+//    },
+
+// export default service;
