@@ -6,9 +6,8 @@ export async function getTodoLists(limit: number, offset: number) {
 	try {
 		const { data } = await axios.get(
 			`http://localhost:3000/todolists${searchQuery}`
-			// `http://localhost:3000/todolists`
 		);
-		console.log('ofset', offset);
+		console.log('data', data);
 		return data;
 	} catch (error) {
 		console.log(error);
@@ -23,3 +22,23 @@ export async function getTodoListById(id: string) {
 		console.log(error);
 	}
 }
+
+// export async function deleteTodoList(id: string) {
+// 	try {
+// 		const response = await axios.delete(
+// 			`http://localhost:3000/todolists/${id}`
+// 		);
+// 		return response;
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }
+
+// export async function createTodoList(todoList: CreateTodoLists) {
+// 	try {
+// 		const response = await axios.post('/todolists', todoList);
+// 		return response;
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }

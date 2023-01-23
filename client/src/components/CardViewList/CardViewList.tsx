@@ -59,7 +59,7 @@ export default function CardViewList({ id, name, todos }: Props) {
 							).toFormat('dd MMM');
 							return (
 								<ListItem
-									key={_id}
+									key={id}
 									sx={{
 										display: 'flex',
 										justifyContent: 'space-between',

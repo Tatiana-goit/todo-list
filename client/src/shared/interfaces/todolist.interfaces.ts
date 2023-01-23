@@ -11,4 +11,12 @@ export interface TodoLists {
 	todos: Todo[];
 }
 
-export type ViewType = 'card' | 'list';
+export interface CreateTodo {
+	text: string;
+	isDone?: boolean;
+	createdDate?: string;
+}
+export interface CreateTodoLists {
+	name: string;
+	todos: CreateTodo[];
+}

@@ -4,9 +4,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function ButtonCreate() {
 	return (
-		<Button variant="contained">
+		<Button variant="contained" sx={{ width: 230 }}>
 			<AddIcon sx={{ mr: 1 }} />
-			Create new Todolist
+			Create new todo list
 		</Button>
 	);
 }
