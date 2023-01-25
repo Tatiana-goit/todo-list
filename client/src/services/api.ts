@@ -23,17 +23,6 @@ export async function getTodoListById(id: string) {
 	}
 }
 
-// export async function deleteTodoList(id: string) {
-// 	try {
-// 		const response = await axios.delete(
-// 			`http://localhost:3000/todolists/${id}`
-// 		);
-// 		return response;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }
-
 export async function createTodoList(todoList: CreateTodoLists) {
 	try {
 		const response = await axios.post(
@@ -43,5 +32,17 @@ export async function createTodoList(todoList: CreateTodoLists) {
 		return response;
 	} catch (error) {
 		console.log('error', error);
+	}
+}
+
+export async function deleteTodoList(id: string) {
+	console.log('id', id);
+	try {
+		const response = await axios.delete(
+			`http://localhost:3000/todolists/${id}`
+		);
+		return response;
+	} catch (error) {
+		console.log(error);
 	}
 }

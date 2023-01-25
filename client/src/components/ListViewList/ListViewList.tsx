@@ -12,14 +12,20 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DateTime } from 'luxon';
 import { Todo } from '../../shared/interfaces/todolist.interfaces';
+import { deleteTodoList } from '../../services/api';
 
 interface Props {
-	id: number;
+	id: string;
 	name: string;
 	todos: Todo[];
 }
 
 export default function ListViewList({ id, name, todos }: Props) {
+	const handleDeleteTodoList = (id: string) => {
+		deleteTodoList(id);
+		location.reload();
+	};
+
 	return (
 		<Card
 			key={id}
@@ -51,7 +57,14 @@ export default function ListViewList({ id, name, todos }: Props) {
 							</Typography>
 						}
 					/>
-					<DeleteIcon sx={{ mr: 3 }} />
+					<Box
+						onClick={() => {
+							handleDeleteTodoList(id);
+						}}
+						sx={{ cursor: 'pointer' }}
+					>
+						<DeleteIcon sx={{ mr: 3 }} />
+					</Box>
 				</Box>
 
 				<Box sx={{ overflowY: 'scroll', pl: 2, pr: 2 }}>
