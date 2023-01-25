@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CreateTodoLists } from '../shared/interfaces/todolist.interfaces';
 
 export async function getTodoLists(limit: number, offset: number) {
 	const searchQuery =
@@ -7,10 +8,9 @@ export async function getTodoLists(limit: number, offset: number) {
 		const { data } = await axios.get(
 			`http://localhost:3000/todolists${searchQuery}`
 		);
-		console.log('data', data);
 		return data;
 	} catch (error) {
-		console.log(error);
+		console.log('error', error);
 	}
 }
 
@@ -19,7 +19,7 @@ export async function getTodoListById(id: string) {
 		const data = await axios.get(`http://localhost:3000/todolists/${id}`);
 		return data;
 	} catch (error) {
-		console.log(error);
+		console.log('error', error);
 	}
 }
 
@@ -34,11 +34,14 @@ export async function getTodoListById(id: string) {
 // 	}
 // }
 
-// export async function createTodoList(todoList: CreateTodoLists) {
-// 	try {
-// 		const response = await axios.post('/todolists', todoList);
-// 		return response;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }
+export async function createTodoList(todoList: CreateTodoLists) {
+	try {
+		const response = await axios.post(
+			'http://localhost:3000/todolists',
+			todoList
+		);
+		return response;
+	} catch (error) {
+		console.log('error', error);
+	}
+}

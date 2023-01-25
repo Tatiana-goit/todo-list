@@ -9,7 +9,7 @@ const router = createBrowserRouter([
 		element: <MainPage />,
 	},
 	{
-		path: '/create',
+		path: '/todolist/create',
 		element: <CreateTodoListPage />,
 	},
 ]);

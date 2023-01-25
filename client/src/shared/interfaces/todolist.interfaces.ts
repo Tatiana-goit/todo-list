@@ -1,6 +1,6 @@
 export interface Todo {
 	_id: string;
-	text: string;
+	text?: string;
 	isDone: boolean;
 	createdDate: string;
 }
@@ -14,7 +14,7 @@ export interface TodoLists {
 export interface CreateTodo {
 	text: string;
 	isDone?: boolean;
-	createdDate?: string;
+	createdDate: string;
 }
 export interface CreateTodoLists {
 	name: string;

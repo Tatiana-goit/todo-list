@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState, useCallback } from 'react';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Link as RouterLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import CardView from '../../components/CardView/CardView';
 import ListView from '../../components/ListView/ListView';
-import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import CountLists from '../../components/CountLists/CountLists';
 import Switcher from '../../components/Switcher/Switcher';
 import Pagination from '../../components/Pagination/Pagination';
@@ -38,7 +39,15 @@ export default function MainPage() {
 					pb: 0,
 				}}
 			>
-				<ButtonCreate />
+				<Button
+					component={RouterLink}
+					to="todolist/create"
+					variant="contained"
+					sx={{ width: 230 }}
+				>
+					<AddIcon sx={{ mr: 1 }} />
+					Create new todo list
+				</Button>
 				<Box display="flex" justifyContent="flex-end">
 					<CountLists
 						setListsOnPage={(event) => {
