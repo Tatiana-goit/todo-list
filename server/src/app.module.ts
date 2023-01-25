@@ -1,17 +1,25 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { TodolistsController } from './todolists/todolists.controller';
-// import { TodolistsService } from './todolists/todolists.service';
-import { TodolistsModule } from './todolists/todolist.module';
+import { TodolistsController } from './todolists/todolists.controller';
+import { MongooseModule } from '@nestjs/mongoose';
+import {
+  TodoList,
+  TodoListSchema,
+  Todo,
+  TodoSchema,
+} from './todolists/entities/todolist.entity';
+import { TodolistsService } from './todolists/todolists.service';
 
 @Module({
   imports: [
-    TodolistsModule,
     MongooseModule.forRoot('mongodb://localhost:2717/todolists'),
+    MongooseModule.forFeature([
+      { name: TodoList.name, schema: TodoListSchema },
+      { name: Todo.name, schema: TodoSchema },
+    ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, TodolistsController],
+  providers: [AppService, TodolistsService],
 })
 export class AppModule {}

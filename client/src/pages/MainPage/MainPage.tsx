@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useCallback } from 'react';
+import { Box, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Link as RouterLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import CardView from '../../components/CardView/CardView';
 import ListView from '../../components/ListView/ListView';
-import ButtonCreate from '../../components/ButtonCreate/ButtonCreate';
 import CountLists from '../../components/CountLists/CountLists';
 import Switcher from '../../components/Switcher/Switcher';
-import { Box } from '@mui/material';
 import Pagination from '../../components/Pagination/Pagination';
 import { TodoLists } from '../../shared/interfaces/todolist.interfaces';
 
@@ -30,21 +31,24 @@ export default function MainPage() {
 		<>
 			<Header />
 			<Box
+				display="flex"
+				justifyContent="space-between"
+				alignItems="center"
 				sx={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
 					p: 5,
 					pb: 0,
 				}}
 			>
-				<ButtonCreate />
-				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'flex-end',
-					}}
+				<Button
+					component={RouterLink}
+					to="todolist/create"
+					variant="contained"
+					sx={{ width: 230 }}
 				>
+					<AddIcon sx={{ mr: 1 }} />
+					Create new todo list
+				</Button>
+				<Box display="flex" justifyContent="flex-end">
 					<CountLists
 						setListsOnPage={(event) => {
 							setListsOnPage(Number(event.target.value));
@@ -54,9 +58,9 @@ export default function MainPage() {
 					<Switcher view={view} handleChange={handleChange} />
 				</Box>
 			</Box>
-			{view === 'card' && <CardView todoLists={todoLists} />}
 			{view === 'list' && <ListView todoLists={todoLists} />}
-			<Pagination pageSize={listsOnPage} setTodos={handleSetTodos} />
+			{view === 'card' && <CardView todoLists={todoLists} />}
+			<Pagination limit={listsOnPage} setTodos={handleSetTodos} />
 		</>
 	);
 }

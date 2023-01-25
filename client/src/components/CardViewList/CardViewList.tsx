@@ -1,5 +1,4 @@
 import React from 'react';
-import { DateTime } from 'luxon';
 import {
 	List,
 	ListItem,
@@ -10,22 +9,29 @@ import {
 	Grid,
 	Box,
 	CardHeader,
-	Container,
+	ListItemText,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { DateTime } from 'luxon';
 import { Todo } from '../../shared/interfaces/todolist.interfaces';
+import { deleteTodoList } from '../../services/api';
 
 interface Props {
-	id: number;
+	id: string;
 	name: string;
 	todos: Todo[];
 }
 
 export default function CardViewList({ id, name, todos }: Props) {
+	const handleDeleteTodoList = (id: string) => {
+		deleteTodoList(id);
+		location.reload();
+	};
+
 	return (
 		<Grid item key={id} xs={12} sm={6} md={4}>
-			<Card sx={{ height: '278px' }}>
-				<Container
+			<Card sx={{ height: '240px' }}>
+				<Box
 					sx={{
 						display: 'flex',
 						justifyContent: 'space-between',
@@ -39,27 +45,33 @@ export default function CardViewList({ id, name, todos }: Props) {
 								sx={{
 									color: 'text.primary',
 									fontSize: 22,
-									pt: 1,
-									pb: 1,
+									pl: 2,
 								}}
 							>
 								{name}
 							</Typography>
 						}
 					/>
-					<DeleteIcon sx={{ mr: 3 }} />
-				</Container>
+					<Box
+						onClick={() => {
+							handleDeleteTodoList(id);
+						}}
+						sx={{ cursor: 'pointer' }}
+					>
+						<DeleteIcon sx={{ mr: 3 }} />
+					</Box>
+				</Box>
 
 				<CardContent sx={{ height: '186px', overflowY: 'scroll' }}>
 					<List>
-						{todos.map(({ id, text, isDone, createdDate }) => {
+						{todos.map(({ _id, text, isDone, createdDate }) => {
 							const date = DateTime.fromFormat(
 								createdDate,
 								'dd MMM yyyy, T'
 							).toFormat('dd MMM');
 							return (
 								<ListItem
-									key={id}
+									key={_id}
 									sx={{
 										display: 'flex',
 										justifyContent: 'space-between',
@@ -69,7 +81,20 @@ export default function CardViewList({ id, name, todos }: Props) {
 								>
 									<Box sx={{ display: 'flex', alignItems: 'center' }}>
 										<Checkbox edge="start" checked={isDone} disableRipple />
-										<Typography sx={{ fontSize: 14 }}>{text}</Typography>
+										<ListItemText
+											primary={text}
+											sx={[
+												{
+													display: 'inline-flex',
+													fontSize: 14,
+												},
+												() => {
+													return isDone
+														? { textDecoration: 'line-through' }
+														: null;
+												},
+											]}
+										/>
 									</Box>
 									<Box
 										component="span"

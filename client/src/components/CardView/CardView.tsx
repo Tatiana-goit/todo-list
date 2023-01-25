@@ -10,8 +10,8 @@ interface Props {
 export default function CardView({ todoLists }: Props) {
 	return (
 		<Grid container spacing={3} rowSpacing={5} p={5}>
-			{todoLists.map(({ id, name, todos }) => (
-				<CardViewList key={id} id={id} name={name} todos={todos} />
+			{todoLists.map(({ _id, name, todos }) => (
+				<CardViewList key={_id} id={_id} name={name} todos={todos} />
 			))}
 		</Grid>
 	);
