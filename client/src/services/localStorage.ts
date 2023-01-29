@@ -18,8 +18,8 @@ export function load(key: string) {
 
 export function remove(key: string) {
 	try {
+		// localStorage.clear();
 		localStorage.removeItem(key);
-		console.log('delll');
 	} catch (error) {
 		console.log(error);
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useCallback } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Link as RouterLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
@@ -10,15 +10,12 @@ import CountLists from '../../components/CountLists/CountLists';
 import Switcher from '../../components/Switcher/Switcher';
 import Pagination from '../../components/Pagination/Pagination';
 import { TodoLists } from '../../shared/interfaces/todolist.interfaces';
+import { useSettings } from '../../context/settingsContext';
 
 export default function MainPage() {
-	const [view, setView] = useState<string>('card');
-	const [listsOnPage, setListsOnPage] = useState(3);
-	const [todoLists, setTodoLists] = useState<TodoLists[] | []>([]);
+	const settings = useSettings();
 
-	function handleChange(_: React.MouseEvent<HTMLElement>, nextView: string) {
-		setView(nextView);
-	}
+	const [todoLists, setTodoLists] = useState<TodoLists[] | []>([]);
 
 	const handleSetTodos = useCallback(
 		(todos: TodoLists[]) => {
@@ -49,18 +46,26 @@ export default function MainPage() {
 					Create new todo list
 				</Button>
 				<Box display="flex" justifyContent="flex-end">
-					<CountLists
-						setListsOnPage={(event) => {
-							setListsOnPage(Number(event.target.value));
-						}}
-						listsOnPage={String(listsOnPage)}
-					/>
-					<Switcher view={view} handleChange={handleChange} />
+					{settings && (
+						<CountLists
+							setListsOnPage={(event) => {
+								settings?.changeListsOnPage(Number(event.target.value));
+							}}
+							listsOnPage={String(settings.listsOnPage)}
+						/>
+					)}
+					{settings && (
+						<Switcher view={settings.view} handleChange={settings.toggleView} />
+					)}
 				</Box>
 			</Box>
-			{view === 'list' && <ListView todoLists={todoLists} />}
-			{view === 'card' && <CardView todoLists={todoLists} />}
-			<Pagination limit={listsOnPage} setTodos={handleSetTodos} />
+			{settings && (
+				<Container disableGutters>
+					{settings.view === 'list' && <ListView todoLists={todoLists} />}
+					{settings.view === 'card' && <CardView todoLists={todoLists} />}
+					<Pagination limit={settings.listsOnPage} setTodos={handleSetTodos} />
+				</Container>
+			)}
 		</>
 	);
 }

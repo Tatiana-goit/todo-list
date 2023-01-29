@@ -3,7 +3,7 @@ import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 interface Props {
-	setListsOnPage(event: SelectChangeEvent): void;
+	setListsOnPage(event: SelectChangeEvent<string>): void;
 	listsOnPage: string;
 }
 
