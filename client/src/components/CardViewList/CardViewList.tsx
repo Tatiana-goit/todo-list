@@ -13,6 +13,8 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DateTime } from 'luxon';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Todo } from '../../shared/interfaces/todolist.interfaces';
 import { deleteTodoList } from '../../services/api';
 
@@ -25,19 +27,24 @@ interface Props {
 export default function CardViewList({ id, name, todos }: Props) {
 	const handleDeleteTodoList = (id: string) => {
 		deleteTodoList(id);
+
 		location.reload();
+		toast.success('You have successfully deleted Todo List', {
+			position: 'top-right',
+			autoClose: 2000,
+			closeOnClick: true,
+			theme: 'colored',
+		});
 	};
 
 	return (
 		<Grid item key={id} xs={12} sm={6} md={4}>
 			<Card sx={{ height: '240px' }}>
 				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						bgcolor: 'secondary.main',
-					}}
+					display="flex"
+					justifyContent="space-between"
+					alignItems="center"
+					bgcolor="secondary.main"
 				>
 					<CardHeader
 						title={
@@ -79,7 +86,7 @@ export default function CardViewList({ id, name, todos }: Props) {
 										pt: 0,
 									}}
 								>
-									<Box sx={{ display: 'flex', alignItems: 'center' }}>
+									<Box display="flex" alignItems="center">
 										<Checkbox edge="start" checked={isDone} disableRipple />
 										<ListItemText
 											primary={text}
@@ -98,13 +105,11 @@ export default function CardViewList({ id, name, todos }: Props) {
 									</Box>
 									<Box
 										component="span"
-										sx={{
-											display: 'flex',
-											justifyContent: 'flex-end',
-											fontSize: 14,
-											width: 60,
-											ml: 2,
-										}}
+										display="flex"
+										justifyContent="flex-end"
+										fontSize={14}
+										width={60}
+										ml={2}
 									>
 										{date}
 									</Box>
@@ -114,6 +119,7 @@ export default function CardViewList({ id, name, todos }: Props) {
 					</List>
 				</CardContent>
 			</Card>
+			<ToastContainer />
 		</Grid>
 	);
 }

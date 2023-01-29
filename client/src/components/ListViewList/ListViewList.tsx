@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMemo } from 'react';
 import {
 	List,
 	ListItem,
@@ -26,6 +27,14 @@ export default function ListViewList({ id, name, todos }: Props) {
 		location.reload();
 	};
 
+	const sortedItems = useMemo(
+		() =>
+			[...todos].sort((b, a) => {
+				return a.isDone === b.isDone ? 0 : a.isDone ? 1 : -1;
+			}),
+		[todos]
+	);
+
 	return (
 		<Card
 			key={id}
@@ -37,12 +46,10 @@ export default function ListViewList({ id, name, todos }: Props) {
 		>
 			<Box>
 				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						bgcolor: 'secondary.main',
-					}}
+					display="flex"
+					justifyContent="space-between"
+					alignItems="center"
+					bgcolor="secondary.main"
 				>
 					<CardHeader
 						sx={{ p: 2 }}
@@ -67,9 +74,9 @@ export default function ListViewList({ id, name, todos }: Props) {
 					</Box>
 				</Box>
 
-				<Box sx={{ overflowY: 'scroll', pl: 2, pr: 2 }}>
+				<Box sx={{ height: '142px', overflowY: 'scroll', pl: 2, pr: 2, pb: 0 }}>
 					<List>
-						{todos.map(({ _id, text, isDone, createdDate }) => {
+						{sortedItems.map(({ _id, text, isDone, createdDate }) => {
 							const date = DateTime.fromFormat(
 								createdDate,
 								'dd MMM yyyy, T'
@@ -83,7 +90,7 @@ export default function ListViewList({ id, name, todos }: Props) {
 										p: 0,
 									}}
 								>
-									<Box sx={{ display: 'flex', alignItems: 'center' }}>
+									<Box display="flex" alignItems="center">
 										<Checkbox edge="start" checked={isDone} disableRipple />
 										<ListItemText
 											primary={text}
@@ -102,13 +109,11 @@ export default function ListViewList({ id, name, todos }: Props) {
 									</Box>
 									<Box
 										component="span"
-										sx={{
-											display: 'flex',
-											justifyContent: 'flex-end',
-											fontSize: 14,
-											width: 60,
-											ml: 2,
-										}}
+										display="flex"
+										justifyContent="flex-end"
+										fontSize={14}
+										width={60}
+										ml={2}
 									>
 										{date}
 									</Box>

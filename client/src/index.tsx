@@ -9,6 +9,9 @@ import '@fontsource/roboto/700.css';
 import './index.css';
 import { CssBaseline } from '@mui/material';
 import type {} from '@mui/x-data-grid-pro/themeAugmentation';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { SettingsProvider } from './context/settingsContext';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 
 const theme = createTheme({
 	palette: {
@@ -17,14 +20,14 @@ const theme = createTheme({
 		},
 		text: {
 			primary: '#1565C1',
-			secondary: '#1184d6',
+			secondary: '#b7d1e2',
 		},
 		primary: {
 			main: '#0D47A1',
 		},
 		secondary: {
 			main: '#8ad1f8',
-			light: '#90CAF9',
+			light: '#e6edf3',
 		},
 	},
 });
@@ -35,8 +38,12 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<App />
+			<LocalizationProvider dateAdapter={AdapterLuxon}>
+				<SettingsProvider>
+					<CssBaseline />
+					<App />
+				</SettingsProvider>
+			</LocalizationProvider>
 		</ThemeProvider>
 	</React.StrictMode>
 );

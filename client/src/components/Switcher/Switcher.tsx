@@ -5,12 +5,18 @@ import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 interface Props {
 	view: string;
-	handleChange(event: React.MouseEvent<HTMLElement>, view: string): void;
+	handleChange(viewType: string): void;
 }
 
 export default function Switcher({ view, handleChange }: Props) {
 	return (
-		<ToggleButtonGroup value={view} onChange={handleChange} exclusive>
+		<ToggleButtonGroup
+			value={view}
+			onChange={(e, value) => {
+				handleChange(value);
+			}}
+			exclusive
+		>
 			<ToggleButton value="card" aria-label="card">
 				<ViewModuleIcon fontSize="medium" />
 			</ToggleButton>

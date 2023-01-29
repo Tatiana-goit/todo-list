@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, IconButton } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
-import { Link as RouterLink } from 'react-router-dom';
 import { object, string } from 'yup';
 import { DateTime } from 'luxon';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import { ToastContainer, toast } from 'react-toastify';
 import Header from '../../components/Header/Header';
 import { save, load, remove } from '../../services/localStorage';
 import { createTodoList } from '../../services/api';
@@ -29,6 +30,8 @@ const schema = object({
 });
 
 export default function CreateTodoListPage() {
+	const navigate = useNavigate();
+
 	const [tasks, setTasks] = useState<Task[]>([]);
 
 	const currentDate = DateTime.now().toFormat('dd MMM yyyy, T');
@@ -65,7 +68,12 @@ export default function CreateTodoListPage() {
 			setTasks([]);
 			remove('createTodoList');
 			remove('tasks');
-			reset();
+			// toast.success('Maybe you want to create another Todo List', {
+			// 	autoClose: 3000,
+			// 	closeOnClick: true,
+			// 	theme: 'colored',
+			// });
+			navigate('/');
 		}
 	};
 
@@ -93,6 +101,13 @@ export default function CreateTodoListPage() {
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
 		if (e.code === 'Enter') e.preventDefault();
 	};
+
+	const notify = () =>
+		toast.success('You have successfully created a new Todo List', {
+			autoClose: 3000,
+			closeOnClick: true,
+			theme: 'colored',
+		});
 
 	return (
 		<>
@@ -122,7 +137,7 @@ export default function CreateTodoListPage() {
 						<Controller
 							control={control}
 							name="name"
-							defaultValue={''}
+							defaultValue=""
 							render={({
 								field: { onChange, value, ref },
 								fieldState: { error, invalid },
@@ -142,7 +157,12 @@ export default function CreateTodoListPage() {
 								/>
 							)}
 						/>
-						<Button type="submit" variant="contained" sx={{ width: 230 }}>
+						<Button
+							type="submit"
+							variant="contained"
+							sx={{ width: 230 }}
+							onClick={notify}
+						>
 							<AddIcon sx={{ mr: 1 }} />
 							Create new todo list
 						</Button>
@@ -152,7 +172,7 @@ export default function CreateTodoListPage() {
 						<Controller
 							control={control}
 							name="task"
-							defaultValue={''}
+							defaultValue=""
 							render={({
 								field: { onChange, value, ref },
 								fieldState: { error, invalid },
@@ -209,6 +229,7 @@ export default function CreateTodoListPage() {
 						})}
 				</Box>
 			</Box>
+			<ToastContainer />
 		</>
 	);
 }
